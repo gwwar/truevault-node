@@ -61,12 +61,12 @@ truevault.documents.list({
 - `callback` is optional, this method returns a q promise
 
 ```javascript
- truevault.documents.retrieve({
-    'vault_id' : 'my-vault-uuid',
-    'id' : 'my-document-uuid'
- }, function myCallback(err, document){
-    //err is null if response is a success
- });
+truevault.documents.retrieve({
+   'vault_id' : 'my-vault-uuid',
+   'id' : 'my-document-uuid'
+}, function myCallback(err, document){
+   //err is null if response is a success
+});
 ```
 
 #### create(options,callback) - creates a document
@@ -107,7 +107,7 @@ truevault.documents.update({
 
 #### del(options,callback) - deletes a document
 - `options.vault_id` vault uuid
-- `options.id` document uuid to update
+- `options.id` document uuid
 - `callback` is optional, this method returns a q promise
 
 ```javascript
@@ -122,13 +122,13 @@ truevault.documents.del({
 #### search(options,callback) - searches for documents
 - `options.vault_id` vault uuid
 - `options.schema_id` schema uuid to search against (optional)
-- `option.filter` - js object of field filters
-- `option.case_sensitive` - true or false
-- `option.page` - an integer of the page results you want
-- `option.per_page` - an integer of the number of results you want from each page
-- `option.filter_type` - a string specifying the filter type
-- `option.full_document` - boolean (id vs full obj)
-- `option.sort` - An object of field name and sort directions.
+- `options.filter` - js object of field filters
+- `options.case_sensitive` - true or false
+- `options.page` - an integer of the page results you want
+- `options.per_page` - an integer of the number of results you want from each page
+- `options.filter_type` - a string specifying the filter type
+- `options.full_document` - boolean (id vs full obj)
+- `options.sort` - An object of field name and sort directions.
 - `callback` is optional, this method returns a q promise
 
 ```javascript
@@ -147,17 +147,153 @@ truevault.documents.search({
 
 ### Blobs
 
-- retrieve
-- create
-- update
-- delete
+#### retrieve(options,callback) - retrieves a blob
+- `options.vault_id` vault uuid
+- `options.id` blob uuid
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.blobs.retrieve({
+  'vault_id' : 'my-vault-uuid',
+  'id' : '3cdaba1a-13a4-45f6-90aa-e4d98155c08d'
+}, function(err, value) {
+   //err is null if response is a success
+});
+```
+
+#### create(options,callback) - creates a blob
+- `options.vault_id` vault uuid
+- `options.blob` a Buffer or String
+- `callback` is optional, this method returns a q promise
+
+```javascript
+ truevault.blobs.create({
+   'vault_id' : 'my-vault-uuid',
+   'blob' : myBuffer
+ }, function(err, value) {
+   //err is null if response is a success
+ });
+```
+
+#### update(options,callback) - updates a blob
+- `options.vault_id` vault uuid
+- `options.id` blob uuid to update
+- `options.blob` Buffer or String
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.blobs.update({
+  'vault_id' : 'my-vault-uuid',
+  'id' : '3cdaba1a-13a4-45f6-90aa-e4d98155c08d',
+  'blob' : myBuffer
+}, function(err, value) {
+   //err is null if response is a success
+});
+```
+
+#### del(options,callback) - deletes a blob
+- `options.vault_id` vault uuid
+- `options.id` blob uuid
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.blobs.del({
+  'vault_id' : 'my-vault-uuid',
+  'id' : 'my-blob-uuid'
+}, function(err, value) {
+   //err is null if response is a success
+});
+```
 
 ### Schemas
 
-- retrive
-- create
-- update
-- delete
+#### list(options,callback) - lists all schemas
+- `options.vault_id` vault uuid
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.schemas.list({
+  'vault_id' : 'my-vault-uuid'
+}, function(err, value) {
+   //err is null if response is a success
+});
+```
+
+#### retrieve(options,callback) - retrieves a schema
+- `options.vault_id` vault uuid
+- `options.id` schema uuid
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.schemas.retrieve({
+  'vault_id':'my-vault-uuid',
+  'id':'my-schema-uuid'
+},function(err, value) {
+   //err is null if response is a success
+});
+```
+
+#### create(options,callback) - creates a schema
+- `options.vault_id` vault uuid
+- `options.schema` js obj
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.schemas.create({
+  'vault_id':'my-vault-uuid',
+  'schema' : {
+    "name":"test",
+    "fields":[
+      {
+        "name":"first",
+        "index":true,
+        "type" : "string"
+      }
+    ]
+  }
+},function(err, value) {
+   //err is null if response is a success
+});
+```
+
+#### update(options,callback) - updates a schema
+- `options.vault_id` vault uuid
+- `options.id` schema uuid to update
+- `options.schema` a js obj
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.schemas.update({
+  'vault_id':'my-vault-uuid',
+  'id' : "my-schema-uuid"
+  'schema' : {
+    "name":"test",
+    "fields":[
+      {
+        "name":"first",
+        "index":true,
+        "type" : "string"
+      }
+    ]
+  }
+},function(err, value) {
+   //err is null if response is a success
+});
+```
+
+#### del(options,callback) - deletes a schema
+- `options.vault_id` vault uuid
+- `options.id` schema uuid
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.schemas.del({
+    'vault_id':'my-vault-uuid',
+    'id':'my-schema-uuid'
+}, function(err, value) {
+   //err is null if response is a success
+});
+```
 
 ## License
 
