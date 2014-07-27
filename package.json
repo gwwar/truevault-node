@@ -1,0 +1,23 @@
+{
+  "author": "Kerry Liu",
+  "name": "truevault",
+  "license": "MIT",
+  "description": "An Unofficial TrueVault API wrapper",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gwwar/truevault-node.git"
+  },
+  "main": "lib/truevault.js",
+  "dependencies": {
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "mocha": "^1.21.0"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": ">= v0.10.29"
+  }
+}
