@@ -19,5 +19,15 @@
   "optionalDependencies": {},
   "engines": {
     "node": ">= v0.10.29"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/gwwar/truevault-node/issues"
+  },
+  "homepage": "https://github.com/gwwar/truevault-node",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "truevault"
+  ]
 }
