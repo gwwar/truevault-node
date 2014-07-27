@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
-    "mocha": "^1.21.0"
+    "mocha": "^1.21.1"
   },
   "optionalDependencies": {},
   "engines": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/gwwar/truevault-node",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "make test"
   },
   "keywords": [
     "truevault"
