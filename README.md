@@ -155,7 +155,7 @@ truevault.documents.search({
 ```javascript
 truevault.blobs.retrieve({
   'vault_id' : 'my-vault-uuid',
-  'id' : '3cdaba1a-13a4-45f6-90aa-e4d98155c08d'
+  'id' : 'my-blob-uuid'
 }, function(err, value) {
    //err is null if response is a success
 });
@@ -184,7 +184,7 @@ truevault.blobs.retrieve({
 ```javascript
 truevault.blobs.update({
   'vault_id' : 'my-vault-uuid',
-  'id' : '3cdaba1a-13a4-45f6-90aa-e4d98155c08d',
+  'id' : 'my-blob-uuid',
   'blob' : myBuffer
 }, function(err, value) {
    //err is null if response is a success
