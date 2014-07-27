@@ -82,7 +82,7 @@ truevault.documents.create({
   'document' : {
     'Hello' : 'World'
   }
-}, function(myCallback, transaction) {
+}, function(err, transaction) {
   //err is null if response is a success
 });
 ```
