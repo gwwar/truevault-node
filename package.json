@@ -3,7 +3,7 @@
   "name": "truevault",
   "license": "MIT",
   "description": "An Unofficial TrueVault API wrapper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/gwwar/truevault-node.git"
