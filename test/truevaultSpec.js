@@ -1,8 +1,6 @@
 var should = require('chai').should();
 var truevault = require('../lib/truevault')('a-fake-key');
 
-// TODO: needs mocks + spies
-
 describe('truevault', function() {
 
   it('handles basic auth ', function() {

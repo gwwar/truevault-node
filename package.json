@@ -14,7 +14,8 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
-    "mocha": "^1.21.1"
+    "mocha": "^1.21.1",
+    "nock": "^0.42.2"
   },
   "optionalDependencies": {},
   "engines": {
