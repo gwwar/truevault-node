@@ -9,14 +9,14 @@ describe('documents', function() {
   });
 
   it('lists documents', function() {
-    nock('https://api.truevault.com').get('/v1/vaults/my-vault-uuid/documents?page=1&full_document=false&per_page=50')
+    nock('https://api.truevault.com').get('/v1/vaults/my-vault-uuid/documents?page=1&full=false&per_page=50')
       .reply(200, '{}');
 
     truevault.documents.list({
       'vault_id':'my-vault-uuid',
       'per_page':50,
       'page':1,
-      'full_document': false //true to return full documents vs uuids
+      'full': false //true to return full documents vs uuids
     }).then(function(value) {
       should.exist(value);
     }, function(err) {
