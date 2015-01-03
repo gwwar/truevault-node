@@ -42,7 +42,7 @@ Or with a promise:
 - `options.vault_id` vault uuid
 - `options.per_page` items per page
 - `options.page` page to return
-- `options.full_document` if true, return full document instead of uuid
+- `options.full` if true, return full document instead of uuid
 - `callback` is optional, this method returns a q promise
 
 ```javascript
@@ -50,7 +50,7 @@ truevault.documents.list({
   'vault_id':'my-vault-uuid',
   'per_page':50, 
   'page':1, 
-  'full_document': false //true to return full documents vs uuids
+  'full': false //true to return full documents vs uuids
 }, function myCallback(err, document){
     //err is null if response is a success
 });
