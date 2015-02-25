@@ -219,6 +219,26 @@ truevault.schemas.list({
 });
 ```
 
+#### listDocuments(options,callback) - Returns a list of documents for schema
+- `options.vault_id` vault uuid
+- `options.id` schema uuid
+- `options.per_page` items per page
+- `options.page` page to return
+- `options.full` if true, return full document instead of uuid
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.documents.listDocuments({
+  'vault_id':'my-vault-uuid',
+  'id':'my-schema-uuid',
+  'per_page':50,
+  'page':1,
+  'full': false //true to return full documents vs uuids
+}, function myCallback(err, document){
+    //err is null if response is a success
+});
+```
+
 #### retrieve(options,callback) - retrieves a schema
 - `options.vault_id` vault uuid
 - `options.id` schema uuid
