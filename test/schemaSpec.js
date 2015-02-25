@@ -40,6 +40,25 @@ describe('schemas', function() {
 
   });
 
+  it('lists documents in schemas', function() {
+    nock('https://api.truevault.com').get('/v1/vaults/vault-uuid/schemas/schema-uuid/documents?page=1&full=false&per_page=50')
+      .reply(200, {});
+
+    schemas.listDocuments({
+      vault_id: 'vault-uuid',
+      id : 'schema-uuid',
+      per_page:50,
+      page:1,
+      full: false //true to return full documents vs uuids
+    }).then(function (value) {
+      should.exist(value);
+    }, function (err) {
+      //if we get here, this should fail
+      should.not.exist(err);
+    }).done();
+
+  });
+
   it('creates a schema', function() {
     nock('https://api.truevault.com').post('/v1/vaults/vault-uuid/schemas')
       .reply(200, {});
