@@ -332,6 +332,16 @@ truevault.users.create({
 });
 ```
 
+#### delete(userId, callback) - deactivates a user, freeing the assocaited username, all ACCESS_TOKENs, and removes user_id from all Groups
+- `userId` string(req’d) - username for the User being deleted
+
+```javascript
+truevault.users.delete('user-id')
+  .then(function(res) {
+     // do something with response
+  });
+```
+
 #### createAccessToken(userId, callback) - creates a user
 - `userId` string(req’d)
 
