@@ -21,4 +21,17 @@ describe('users', function() {
       should.not.exist(err);
     }).done();
   });
+
+  it('deletes a user', function() {
+    nock('https://api.truevault.com').delete('/v1/users/user-id')
+      .reply(200, {});
+
+    users.delete('user-id')
+      .then(function(value) {
+        should.exist(value);
+      }, function(err) {
+        //if we get here, this should fail
+        should.not.exist(err);
+      }).done();
+  });
 });
