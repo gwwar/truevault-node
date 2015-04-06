@@ -341,6 +341,16 @@ truevault.users.delete('user-id')
      // do something with response
   });
 ```
+
+#### createAccessToken(userId, callback) - creates a user
+- `userId` string(req’d)
+
+```javascript
+truevault.users.createAccessToken('user-id')
+  .then(function(res) {
+    // do something with response
+  });
+```
 ## License
 
 MIT
