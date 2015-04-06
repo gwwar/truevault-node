@@ -315,6 +315,22 @@ truevault.schemas.del({
 });
 ```
 
+### Users
+
+#### create(userParams, callback) - creates a user
+- `userParams.username` string(req’d) - username for the User being created
+- `userParams.password` string(req’d) - password for the User being created
+- `userParams.attributes` b64 string(optional) - base64 encoded JSON document describing the User attributes
+- `userParams.schema_id` uuid(optional) - UUID of the Schema to associate the attributes Document with
+
+```javascript
+truevault.users.create({
+    username: 'username',
+    password: 'password'
+}).then(function(res) {
+   // do something with response
+});
+```
 ## License
 
 MIT
