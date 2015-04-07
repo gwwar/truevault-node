@@ -359,7 +359,7 @@ truevault.users.createAccessToken({
 #### create(options, callback) - Create a Group with a name for the account with a policy.
 - `options.name` string(req'd) - new name for Group
 - `options.policy` object(optional) - new policy for Group, base64 encoded
-- `options.user_ids` string(optional) - comma separated list of user_id for this update request
+- `options.user_ids` array(optional) - comma separated list of user_id for this update request
 
 ```javascript
 truevault.groups.create({
@@ -373,7 +373,7 @@ truevault.groups.create({
 #### update(options, callback) - Updates a Group’s policy, name, and attached users
 - `options.name` string(req'd) - new name for Group
 - `options.policy` object(optional) - new policy for Group, base64 encoded
-- `options.user_ids` string(optional) - comma separated list of user_id for this update request
+- `options.user_ids` array(optional) - comma separated list of user_id for this update request
 - `options.operation` string(optional) - ‘APPEND’ or ‘REMOVE’ this group for the provided list of user_id
 
 ```javascript
