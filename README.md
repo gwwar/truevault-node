@@ -48,8 +48,8 @@ Or with a promise:
 ```javascript
 truevault.documents.list({
   'vault_id':'my-vault-uuid',
-  'per_page':50, 
-  'page':1, 
+  'per_page':50,
+  'page':1,
   'full': false //true to return full documents vs uuids
 }, function myCallback(err, document){
     //err is null if response is a success
@@ -317,11 +317,11 @@ truevault.schemas.del({
 
 ### Users
 
-#### create(userParams, callback) - creates a user
-- `userParams.username` string(req’d) - username for the User being created
-- `userParams.password` string(req’d) - password for the User being created
-- `userParams.attributes` b64 string(optional) - base64 encoded JSON document describing the User attributes
-- `userParams.schema_id` uuid(optional) - UUID of the Schema to associate the attributes Document with
+#### create(options, callback) - creates a user
+- `options.username` string(req’d) - username for the User being created
+- `options.password` string(req’d) - password for the User being created
+- `options.attributes` b64 string(optional) - base64 encoded JSON document describing the User attributes
+- `options.schema_id` uuid(optional) - UUID of the Schema to associate the attributes Document with
 
 ```javascript
 truevault.users.create({
@@ -332,24 +332,26 @@ truevault.users.create({
 });
 ```
 
-#### delete(userId, callback) - deactivates a user, freeing the assocaited username, all ACCESS_TOKENs, and removes user_id from all Groups
-- `userId` string(req’d) - username for the User being deleted
+#### del(userId, callback) - deactivates a user, freeing the assocaited username, all ACCESS_TOKENs, and removes user_id from all Groups
+- `options.id` string(req’d) - username for the User being deleted
 
 ```javascript
-truevault.users.delete('user-id')
-  .then(function(res) {
-     // do something with response
-  });
+truevault.users.del({
+    id: 'user-id'
+}).then(function(res) {
+    // do something with response
+});
 ```
 
-#### createAccessToken(userId, callback) - creates a user
-- `userId` string(req’d)
+#### createAccessToken(options, callback) - creates a user
+- `options.id` string(req’d)
 
 ```javascript
-truevault.users.createAccessToken('user-id')
-  .then(function(res) {
+truevault.users.createAccessToken({
+    id: 'user-id'
+}).then(function(res) {
     // do something with response
-  });
+});
 ```
 
 ### Groups
@@ -375,7 +377,7 @@ truevault.groups.create({
 - `options.operation` string(optional) - ‘APPEND’ or ‘REMOVE’ this group for the provided list of user_id
 
 ```javascript
-truevault.groups.create({
+truevault.groups.update({
     name: 'group-name',
     user_ids: ['1','2','3'],
     operation: 'REMOVE'
@@ -384,14 +386,15 @@ truevault.groups.create({
 });
 ```
 
-#### delete(groupId, callback) - Deletes a group and detaches the Group from all users.
-- `groupId` string(req’d)
+#### del(options, callback) - Deletes a group and detaches the Group from all users.
+- `options.id` string(req’d)
 
 ```javascript
-truevault.group.delete('group-id')
-  .then(function(res) {
-     // do something with response
-  });
+truevault.group.delete({
+    id: 'group-id'
+}).then(function(res) {
+    // do something with response
+});
 ```
 
 ## License

@@ -26,8 +26,9 @@ describe('users', function() {
     nock('https://api.truevault.com').delete('/v1/users/user-id')
       .reply(200, {});
 
-    users.delete('user-id')
-      .then(function(value) {
+    users.del({
+      id: 'user-id'
+    }).then(function(value) {
         should.exist(value);
       }, function(err) {
         //if we get here, this should fail
@@ -39,8 +40,9 @@ describe('users', function() {
     nock('https://api.truevault.com').post('/v1/users/user-id/access_token')
       .reply(200, {});
 
-    users.createAccessToken('user-id')
-      .then(function(value) {
+    users.createAccessToken({
+      id: 'user-id'
+    }).then(function(value) {
         should.exist(value);
       }, function(err) {
         //if we get here, this should fail

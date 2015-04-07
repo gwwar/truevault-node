@@ -53,7 +53,9 @@ describe('groups', function() {
     nock('https://api.truevault.com').delete('/v1/groups/group-id')
       .reply(200, {});
 
-    groups.delete('group-id').then(function(value) {
+    groups.del({
+      id: 'group-id'
+    }).then(function(value) {
       should.exist(value);
     }, function(err) {
       should.not.exist(err);
