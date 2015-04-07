@@ -362,7 +362,7 @@ truevault.users.createAccessToken('user-id')
 ```javascript
 truevault.groups.create({
     name: 'group-name',
-    user_ids: '1,2,3,4'
+    user_ids: ['1','2','3'],
 }).then(function(res) {
    // do something with response
 });
@@ -377,7 +377,7 @@ truevault.groups.create({
 ```javascript
 truevault.groups.create({
     name: 'group-name',
-    user_ids: '1,2,3,4',
+    user_ids: ['1','2','3'],
     operation: 'REMOVE'
 }).then(function(res) {
    // do something with response

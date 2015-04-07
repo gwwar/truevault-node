@@ -19,7 +19,7 @@ describe('groups', function() {
         ],
         'Activities' : 'CRUDA'
       },
-      'user_ids' : '1,2,3'
+      'user_ids' : ['1','2','3'],
     }).then(function(value) {
       should.exist(value);
     }, function(err) {
@@ -40,7 +40,7 @@ describe('groups', function() {
         ],
         'Activities' : 'CRUDA'
       },
-      'user_ids' : '1,2,3',
+      'user_ids' : ['1','2','3'],
       'operation' : 'REMOVE'
     }).then(function(value) {
       should.exist(value);
