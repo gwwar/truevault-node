@@ -371,6 +371,7 @@ truevault.groups.create({
 ```
 
 #### update(options, callback) - Updates a Group’s policy, name, and attached users
+- `options.id` string(req'd) - id of group to update
 - `options.name` string(req'd) - new name for Group
 - `options.policy` object(optional) - new policy for Group, base64 encoded
 - `options.user_ids` array(optional) - comma separated list of user_id for this update request
