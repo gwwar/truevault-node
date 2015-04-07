@@ -48,4 +48,15 @@ describe('groups', function() {
       should.not.exist(err);
     }).done();
   });
+
+  it('deletes a group', function() {
+    nock('https://api.truevault.com').delete('/v1/groups/group-id')
+      .reply(200, {});
+
+    groups.delete('group-id').then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      should.not.exist(err);
+    }).done();
+  });
 });
