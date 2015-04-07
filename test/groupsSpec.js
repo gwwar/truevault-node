@@ -26,4 +26,26 @@ describe('groups', function() {
       should.not.exist(err);
     }).done();
   });
+
+  it('updates a group', function() {
+    nock('https://api.truevault.com').put('/v1/groups/group-id')
+      .reply(200, {});
+
+    groups.update({
+      'id' : 'group-id',
+      'name' : 'group-name',
+      'policy' : {
+        'Resources' : [
+          'Vault::'
+        ],
+        'Activities' : 'CRUDA'
+      },
+      'user_ids' : '1,2,3',
+      'operation' : 'REMOVE'
+    }).then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      should.not.exist(err);
+    }).done();
+  });
 });
