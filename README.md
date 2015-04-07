@@ -351,6 +351,49 @@ truevault.users.createAccessToken('user-id')
     // do something with response
   });
 ```
+
+### Groups
+
+#### create(options, callback) - Create a Group with a name for the account with a policy.
+- `options.name` string(req'd) - new name for Group
+- `options.policy` object(optional) - new policy for Group, base64 encoded
+- `options.user_ids` string(optional) - comma separated list of user_id for this update request
+
+```javascript
+truevault.groups.create({
+    name: 'group-name',
+    user_ids: '1,2,3,4'
+}).then(function(res) {
+   // do something with response
+});
+```
+
+#### update(options, callback) - Updates a Group’s policy, name, and attached users
+- `options.name` string(req'd) - new name for Group
+- `options.policy` object(optional) - new policy for Group, base64 encoded
+- `options.user_ids` string(optional) - comma separated list of user_id for this update request
+- `options.operation` string(optional) - ‘APPEND’ or ‘REMOVE’ this group for the provided list of user_id
+
+```javascript
+truevault.groups.create({
+    name: 'group-name',
+    user_ids: '1,2,3,4',
+    operation: 'REMOVE'
+}).then(function(res) {
+   // do something with response
+});
+```
+
+#### delete(groupId, callback) - Deletes a group and detaches the Group from all users.
+- `groupId` string(req’d)
+
+```javascript
+truevault.group.delete('group-id')
+  .then(function(res) {
+     // do something with response
+  });
+```
+
 ## License
 
 MIT
