@@ -10,7 +10,8 @@
   },
   "main": "lib/truevault.js",
   "dependencies": {
-    "q": "^1.0.1"
+    "q": "^1.0.1",
+    "reqwest": "^1.1.5"
   },
   "devDependencies": {
     "chai": "^1.9.1",
