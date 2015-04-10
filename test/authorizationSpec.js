@@ -7,7 +7,7 @@ describe('authorization', function() {
     should.exist(authorization);
   });
 
-  it('logs in a user', function() {
+  it('logs user in', function() {
     nock('https://api.truevault.com').post('/v1/auth/login')
       .reply(200, {});
 
@@ -16,6 +16,18 @@ describe('authorization', function() {
       password : 'password',
       account_id: 'account_id'
     }).then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      //if we get here, this should fail
+      should.not.exist(err);
+    }).done();
+  });
+
+  it('logs user out', function() {
+    nock('https://api.truevault.com').post('/v1/auth/logout')
+      .reply(200, {});
+
+    authorization.logout().then(function(value) {
       should.exist(value);
     }, function(err) {
       //if we get here, this should fail
