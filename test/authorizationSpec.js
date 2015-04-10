@@ -34,4 +34,16 @@ describe('authorization', function() {
       should.not.exist(err);
     }).done();
   });
+
+  it('verifies user', function() {
+    nock('https://api.truevault.com').get('/v1/auth/me')
+      .reply(200, {});
+
+    authorization.verify().then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      //if we get here, this should fail
+      should.not.exist(err);
+    }).done();
+  });
 });
