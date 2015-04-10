@@ -354,6 +354,39 @@ truevault.users.createAccessToken({
 });
 ```
 
+### Authorization
+
+#### login(options, callback) - Login a user
+- `options.username` string(req’d) - username of active user
+- `options.password` string(req’d) - password of active user
+- `options.account_id` string(req’d) - account_id
+
+```javascript
+truevault.authorization.login({
+    username: 'username',
+    password: 'password',
+    account_id: 'account-id'
+}).then(function(res) {
+    // do something with response
+});
+```
+
+#### logout(callback) - Logout a user, deactivating the associated `ACCESS_TOKEN`
+
+```javascript
+truevault.authorization.logout().then(function(res) {
+    // do something with response
+});
+```
+
+#### verify(callback) - Verify a user
+
+```javascript
+truevault.authorization.verify().then(function(res) {
+    // do something with response
+});
+```
+
 ### Groups
 
 #### create(options, callback) - Create a Group with a name for the account with a policy.
