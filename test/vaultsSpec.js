@@ -7,6 +7,20 @@ describe('vaults', function() {
     should.exist(vaults);
   });
 
+  it('lists vaults', function() {
+    nock('https://api.truevault.com').get('/v1/vaults?page=1&per_page=50')
+      .reply(200, {});
+
+    vaults.list({
+      page : '1',
+      per_page : '50'
+    }).then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      should.not.exist(err);
+    }).done();
+  });
+
   it('creates a vault', function() {
     nock('https://api.truevault.com').post('/v1/vaults')
       .reply(200, {});
@@ -26,20 +40,6 @@ describe('vaults', function() {
 
     vaults.retrieve({
       id : 'vault-id'
-    }).then(function(value) {
-      should.exist(value);
-    }, function(err) {
-      should.not.exist(err);
-    }).done();
-  });
-
-  it('lists vaults', function() {
-    nock('https://api.truevault.com').get('/v1/vaults?page=1&per_page=50')
-      .reply(200, {});
-
-    vaults.list({
-      page : '1',
-      per_page : '50'
     }).then(function(value) {
       should.exist(value);
     }, function(err) {
