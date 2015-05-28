@@ -61,4 +61,16 @@ describe('groups', function() {
       should.not.exist(err);
     }).done();
   });
+
+  it('lists groups', function() {
+    nock('https://api.truevault.com')
+      .get('/v1/groups')
+      .reply(200, {});
+
+    groups.list().then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      should.not.exist(err);
+    }).done();
+  });
 });

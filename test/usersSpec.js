@@ -29,11 +29,11 @@ describe('users', function() {
     users.del({
       id: 'user-id'
     }).then(function(value) {
-        should.exist(value);
-      }, function(err) {
-        //if we get here, this should fail
-        should.not.exist(err);
-      }).done();
+      should.exist(value);
+    }, function(err) {
+      //if we get here, this should fail
+      should.not.exist(err);
+    }).done();
   });
 
   it('creates an access token', function() {
@@ -43,10 +43,25 @@ describe('users', function() {
     users.createAccessToken({
       id: 'user-id'
     }).then(function(value) {
-        should.exist(value);
-      }, function(err) {
-        //if we get here, this should fail
-        should.not.exist(err);
-      }).done();
+      should.exist(value);
+    }, function(err) {
+      //if we get here, this should fail
+      should.not.exist(err);
+    }).done();
+  });
+
+  it("returns the list of users", function() {
+    nock('https://api.truevault.com')
+      .get('/v1/users?status=ACTIVATED&full=true&modified=')
+      .reply(200, {});
+
+    users.list({
+      status: "ACTIVATED",
+      full: true
+    }).then(function(value) {
+      should.exist(value);
+    }, function(err) {
+      should.not.exist(err);
+    }).done();
   });
 });
