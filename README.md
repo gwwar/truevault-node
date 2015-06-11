@@ -1,4 +1,4 @@
-# TrueVault Client Library
+# TrueVault Client Library [![Build Status](https://travis-ci.org/gwwar/truevault-node.svg)](https://travis-ci.org/gwwar/truevault-node)
 
 ## Installation
 
