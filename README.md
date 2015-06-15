@@ -48,8 +48,8 @@ Or with a promise:
 ```javascript
 truevault.documents.list({
   'vault_id':'my-vault-uuid',
-  'per_page':50, 
-  'page':1, 
+  'per_page':50,
+  'page':1,
   'full': false //true to return full documents vs uuids
 }, function myCallback(err, document){
     //err is null if response is a success
@@ -312,6 +312,188 @@ truevault.schemas.del({
     'id':'my-schema-uuid'
 }, function(err, value) {
    //err is null if response is a success
+});
+```
+
+### Users
+
+#### create(options, callback) - creates a user
+- `options.username` string(req’d) - username for the User being created
+- `options.password` string(req’d) - password for the User being created
+- `options.attributes` b64 string(optional) - base64 encoded JSON document describing the User attributes
+- `options.schema_id` uuid(optional) - UUID of the Schema to associate the attributes Document with
+
+```javascript
+truevault.users.create({
+    username: 'username',
+    password: 'password'
+}).then(function(res) {
+   // do something with response
+});
+```
+
+#### del(userId, callback) - deactivates a user, freeing the assocaited username, all ACCESS_TOKENs, and removes user_id from all Groups
+- `options.id` string(req’d) - username for the User being deleted
+
+```javascript
+truevault.users.del({
+    id: 'user-id'
+}).then(function(res) {
+    // do something with response
+});
+```
+
+#### createAccessToken(options, callback) - creates a user
+- `options.id` string(req’d)
+
+```javascript
+truevault.users.createAccessToken({
+    id: 'user-id'
+}).then(function(res) {
+    // do something with response
+});
+```
+
+### Authorization
+
+#### login(options, callback) - Login a user
+- `options.username` string(req’d) - username of active user
+- `options.password` string(req’d) - password of active user
+- `options.account_id` string(req’d) - account_id
+
+```javascript
+truevault.authorization.login({
+    username: 'username',
+    password: 'password',
+    account_id: 'account-id'
+}).then(function(res) {
+    // do something with response
+});
+```
+
+#### logout(callback) - Logout a user, deactivating the associated `ACCESS_TOKEN`
+
+```javascript
+truevault.authorization.logout().then(function(res) {
+    // do something with response
+});
+```
+
+#### verify(callback) - Verify a user
+
+```javascript
+truevault.authorization.verify().then(function(res) {
+    // do something with response
+});
+```
+
+### Groups
+
+#### create(options, callback) - Create a Group with a name for the account with a policy.
+- `options.name` string(req'd) - new name for Group
+- `options.policy` object(optional) - new policy for Group, base64 encoded
+- `options.user_ids` array(optional) - comma separated list of user_id for this update request
+
+```javascript
+truevault.groups.create({
+    name: 'group-name',
+    user_ids: ['1','2','3'],
+}).then(function(res) {
+   // do something with response
+});
+```
+
+#### update(options, callback) - Updates a Group’s policy, name, and attached users
+- `options.id` string(req'd) - id of group to update
+- `options.name` string(optional) - new name for Group
+- `options.policy` object(optional) - new policy for Group, base64 encoded
+- `options.user_ids` array(optional) - array of user ids for this update request
+- `options.operation` string(optional) - ‘APPEND’ or ‘REMOVE’ this group for the provided list of user_id
+
+```javascript
+truevault.groups.update({
+    name: 'group-name',
+    user_ids: ['1','2','3'],
+    operation: 'REMOVE'
+}).then(function(res) {
+   // do something with response
+});
+```
+
+#### del(options, callback) - Deletes a group and detaches the Group from all users.
+- `options.id` string(req’d)
+
+```javascript
+truevault.group.delete({
+    id: 'group-id'
+}).then(function(res) {
+    // do something with response
+});
+```
+
+### Vaults
+
+#### list(options,callback) - Returns a list of vaults
+- `options.page` – int(optional, default: 1) - page number in paginated response
+- `options.per_page` – int(optional, default: 100) - results per page in paginated respons
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.vaults.list({
+  'per_page':50,
+  'page':1,
+}, function myCallback(err, document){
+    //err is null if response is a success
+});
+```
+
+#### create(options,callback) - creates a vault
+- `options.name` – string(req'd) - new name for Vault
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.vaults.create({
+  'name':'my-vault'
+}, function(err, transaction) {
+  //err is null if response is a success
+});
+```
+
+#### retrieve(options,callback) - returns a vault (js obj)
+- `options.id` - string(req'd) - Vault ID
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.vaults.retrieve({
+   'id' : 'my-vault-id'
+}, function myCallback(err, vault){
+   //err is null if response is a success
+});
+```
+
+#### update(options,callback) - updates a vault
+- `options.id` – string(req’d) - Vault ID to update
+- `options.name` – string(optional) - new Vault name
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.vaults.update({
+  'id':'my-vault-id',
+  'name' : 'my-new-vault-name'
+},function(err, value) {
+  //err is null if response is a success
+});
+```
+
+#### del(options,callback) - deletes a vault
+- `options.id` – string(req’d) - Vault ID
+- `callback` is optional, this method returns a q promise
+
+```javascript
+truevault.vaults.del({
+  'id':'my-vault-id'
+},function(err, value) {
+  //err is null if response is a success
 });
 ```
 
